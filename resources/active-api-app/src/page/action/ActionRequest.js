@@ -10,7 +10,8 @@ const ActionRequest = ({ store, data, action }) => {
 
 	useEffect(() => {
 		if (tableRef) {
-			setTableScroll({ y: 'calc(100vh - ' + (tableRef.current.getBoundingClientRect()['top'] + 100) + 'px)' });
+
+			setTableScroll({ y: 'calc(100vh - ' + (tableRef.current.getBoundingClientRect()['top'] + 70) + 'px)' });
 		}
 	}, [tableRef])
 
@@ -97,6 +98,7 @@ const ActionRequest = ({ store, data, action }) => {
 		}
 	]
 
+
 	return (
 		<div className={"action-request-tab"}>
 			{
@@ -141,13 +143,20 @@ const ActionRequest = ({ store, data, action }) => {
 					</div>
 				) : ''
 			}
-			<div className={"request-table-wrapper"} ref={tableRef}>
-				<Table expandable={{ defaultExpandAllRows: true }} scroll={tableScroll}
-					   rowKey={record => "table-row-" + record.id} size={"small"} pagination={false}
-					   className={"request-table"} columns={requestColumn} dataSource={store.request.table}/>
+			<div className={"request-table-wrapper"} ref={tableRef} style={{ minHeight: tableScroll.y }}>
+				<Table
+					expandable={{ defaultExpandAllRows: true }}
+					scroll={tableScroll}
+					rowKey={record => "table-row-" + record.id}
+					size={"small"}
+					pagination={false}
+					className={"request-table"}
+					columns={requestColumn}
+					dataSource={store.request.table}
+				/>
 			</div>
 		</div>
 	)
 }
 
-export default inject('store')(observer(ActionRequest));
+export default inject('store')(observer(ActionRequest))

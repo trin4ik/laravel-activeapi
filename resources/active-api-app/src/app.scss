@@ -16,7 +16,7 @@ a {
   &:after {
     position: absolute;
     content: '';
-    bottom: 0px;
+    bottom: -1px;
     left: 0;
     right: 0;
     height: 1px;
@@ -170,7 +170,7 @@ a {
       }
 
       .api-version {
-
+        margin-left: 20px;
       }
 
       .search {
@@ -179,14 +179,13 @@ a {
 
       .dn {
         width: 70px;
-        height: 70px;
-        position: relative;
-        top: 20px;
-        border-radius: 50%;
+        height: 140px;
         display: flex;
         flex-direction: column;
         overflow: hidden;
         transition: transform .3s cubic-bezier(.75, .62, .4, 1.33);
+        cursor: pointer;
+        align-self: flex-start;
 
         &.night {
           transform: rotate(180deg);
@@ -196,28 +195,12 @@ a {
         .day, .night {
           flex: 1;
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           justify-content: center;
-        }
-
-        .day {
-          &:after {
-            content: '';
-            width: 20px;
-            height: 20px;
-            background-color: #333;
-          }
         }
 
         .night {
           transform: rotate(180deg);
-
-          &:after {
-            content: '';
-            width: 20px;
-            height: 20px;
-            background-color: #fff;
-          }
         }
       }
     }
@@ -230,6 +213,7 @@ a {
       flex-direction: column;
       background: #fff;
       z-index: 10;
+      display: flex;
 
       h1 {
         font-weight: 400;
@@ -509,8 +493,8 @@ a {
 
       .request {
         padding: 0px 30px;
-        display: flex;
         flex: 1;
+        display: flex;
 
         .ant-tabs {
           width: 100%;
@@ -679,6 +663,7 @@ a {
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            flex: 1;
 
             .ant-radio-button-wrapper {
               border-bottom-left-radius: 0;
@@ -795,4 +780,15 @@ a {
       }
     }
   }
+}
+
+.ant-dropdown-menu-title-content > a:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  content: "";
+  border: 0;
 }

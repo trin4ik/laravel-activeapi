@@ -2,7 +2,7 @@ import React from 'react'
 import { inject, observer } from 'mobx-react'
 import { Input } from "antd"
 
-const InputString = ({store, record}) => {
+const InputString = ({ store, record }) => {
 
 	return (
 		<div className={"form"}>

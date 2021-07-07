@@ -1,6 +1,6 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
-import { config } from '../store/config'
+import config from '../store/config'
 
 const Logo = ({ store }) => {
 
@@ -13,7 +13,7 @@ const Logo = ({ store }) => {
 					paddingLeft: 30,
 				}}
 			>
-				{config.info.name}
+				{config.data.info.name}
 			</h1>
 		</div>
 	)

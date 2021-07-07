@@ -7,19 +7,19 @@ import dayjs from "dayjs"
 import 'dayjs/locale/ru'
 import Store from "./store"
 import { Provider } from "mobx-react"
-import { loadConfig } from './store/config'
+import { loadConfig } from "./store/config"
 
 (async () => {
-    dayjs.locale('ru')
+	dayjs.locale('ru')
 
-    await loadConfig()
+	await loadConfig()
 
-    ReactDOM.render(
-        <React.StrictMode>
-            <Provider store={new Store()}>
-                <Router />
-            </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
-    )
+	ReactDOM.render(
+		<React.StrictMode>
+			<Provider store={new Store()}>
+				<Router/>
+			</Provider>
+		</React.StrictMode>,
+		document.getElementById('root')
+	)
 })()

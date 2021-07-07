@@ -38,11 +38,11 @@ const Router = ({ store }) => {
 				<div className={"content"}>
 					<HeadMenu/>
 					<div className={"page"}>
-						{/*<Switch>
-                        <Route path="/" exact component={Welcome} />
-                        <Route path="/:controller" exact component={Controller} />
-                        <Route path="/:controller/:action" exact component={Action} />
-                    </Switch>*/}
+						<Switch>
+							<Route path="/" exact component={Welcome}/>
+							<Route path="/:group/:version/:controller" exact component={Controller}/>
+							<Route path="/:group/:version/:controller/:action" exact component={Action}/>
+						</Switch>
 					</div>
 				</div>
 			</div>
