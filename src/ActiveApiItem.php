@@ -329,7 +329,9 @@ class ActiveApiItem
 				'type' => $arr[0],
 				'name' => $arr[1],
 				'text' => $arr[2],
-				'eval' => $arr[3]
+				'eval' => $arr[3],
+				'group' => $this->group,
+				'version' => $this->version
 			], 'from' => [
 				'controller' => $this->controller['slug'],
 				'action' => $this->action['slug'],

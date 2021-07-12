@@ -104,7 +104,7 @@ class RequestStore {
 			config.data.variable.map(vars => {
 				if (vars.from.url === this.url) {
 					if (vars.data.eval.slice(0, 10) === '@response.') {
-						this.store.vars.add(vars.data.id, vars.data.eval.slice(10).split('.').reduce((o, i) => o[i], response.data))
+						this.store.vars.add([this.store.app.apiGroup, this.store.app.apiVersion, vars.data.id].join('@'), vars.data.eval.slice(10).split('.').reduce((o, i) => o[i], response.data))
 					}
 				}
 			})
@@ -435,8 +435,8 @@ class RequestStore {
 	get getHeader () {
 		const result = { ...config.data.info.header }
 
-		if (this.auth && this.sendAuth && this.store.vars.server.token) {
-			result['Authorization'] = 'Bearer ' + this.store.vars.server.token
+		if (this.auth && this.sendAuth && this.store.vars.server[[this.store.app.apiGroup, this.store.app.apiVersion, 'token'].join('@')]) {
+			result['Authorization'] = 'Bearer ' + this.store.vars.server[[this.store.app.apiGroup, this.store.app.apiVersion, 'token'].join('@')]
 		}
 
 		return result

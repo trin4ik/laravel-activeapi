@@ -42,8 +42,11 @@ const Action = ({ store }) => {
 	}, [store.request.response])
 
 	useEffect(() => {
+		store.app.setApiGroup(param.group)
+		store.app.setApiVersion(param.version)
+
 		if (param.controller) {
-			const controller = config.controllerList(store.app.apiGroup, store.app.apiVersion).filter(item => item.id === param.controller);
+			const controller = config.controllerList(param.group, param.version).filter(item => item.id === param.controller);
 			if (controller.length) {
 				if (param.action) {
 					if (controller[0].action.filter(item => item.id === param.action).length) {
@@ -55,7 +58,7 @@ const Action = ({ store }) => {
 	}, [location])
 
 	const loadAction = ({ controller, action }) => {
-		const controllerData = config.controllerList(store.app.apiGroup, store.app.apiVersion).filter(item => item.id === controller)[0];
+		const controllerData = config.controllerList(param.group, param.version).filter(item => item.id === controller)[0];
 		const actionData = controllerData.action.filter(item => item.id === action)[0];
 
 		store.router.setAction(action)
@@ -106,7 +109,7 @@ const Action = ({ store }) => {
 					<>
 						<h1>
 							<Link
-								to={"/" + [store.app.apiGroup, store.app.apiVersion, store.router.controller].join('/')}>
+								to={"/" + [param.group, param.version, store.router.controller].join('/')}>
 								{controller.name}
 							</Link>
 							<div className={"icon"}>
@@ -140,7 +143,7 @@ const Action = ({ store }) => {
 						</div>
 						<div className={"request"}>
 							<Tabs activeKey={tabState} onChange={key => setTabState(key)} className={"tabs"}
-								  tabBarExtraContent={<Button size={"default"} onClick={sendRequest}
+								  tabBarExtraContent={<Button onClick={sendRequest}
 															  icon={<SendOutlined/>} size={"small"} type={"primary"}
 															  loading={sendRequestLoad}>Отправить
 									  (Ctrl+Enter)</Button>}>

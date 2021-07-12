@@ -19,11 +19,13 @@ const Controller = ({ store }) => {
 	const [data, setData] = useState(false)
 
 	useEffect(() => {
+		store.app.setApiGroup(param.group)
+		store.app.setApiVersion(param.version)
 		store.router.setAction(false)
 		if (param.controller) {
-			if (config.controllerList(store.app.apiGroup, store.app.apiVersion).filter(item => item.id === param.controller).length) {
+			if (config.controllerList(param.group, param.version).filter(item => item.id === param.controller).length) {
 				store.router.setController(param.controller)
-				setData(config.controllerList(store.app.apiGroup, store.app.apiVersion).filter(item => item.id === param.controller)[0])
+				setData(config.controllerList(param.group, param.version).filter(item => item.id === param.controller)[0])
 			}
 		}
 	}, [location])
@@ -47,7 +49,7 @@ const Controller = ({ store }) => {
 							{
 								data.action.map(item => (
 									<Link
-										to={'/' + [store.app.apiGroup, store.app.apiVersion, store.router.controller, item.id].join('/')}
+										to={'/' + [param.group, param.version, store.router.controller, item.id].join('/')}
 										className={"item"}
 										key={"action-" + item.id}
 									>

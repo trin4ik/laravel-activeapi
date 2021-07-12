@@ -109,7 +109,7 @@ const ActionRequest = ({ store, data, action }) => {
 						</div>
 						<div className={"input"}>
 							<Input disabled={!store.request.sendAuth}
-								   value={store.vars.server.token ? store.vars.server.token : ''}
+								   value={store.vars.server[[store.app.apiGroup, store.app.apiVersion, 'token'].join('@')] ?? ''}
 								   placeholder={"Authorization: Bearer"}/>
 						</div>
 						<div className={"switch"}>

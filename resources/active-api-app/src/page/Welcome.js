@@ -26,18 +26,23 @@ const Welcome = ({ store }) => {
 			<div className={"list-key-value"}>
 				<div className={"row"}>
 					<div className={"key"}>URL</div>
-					<div className={"value"}>http://77.244.214.219:8081</div>
+					<div className={"value"}>{config.data.info.url}</div>
 				</div>
-				<div className={"row"}>
-					<div className={"key"}>Авторизация</div>
-					<div className={"value"}>Authorization: Bearer</div>
-				</div>
+				{
+					config.data.info.auth.enabled && (
+						<div className={"row"}>
+							<div className={"key"}>Авторизация</div>
+							<div className={"value"}>{config.data.info.auth.description}</div>
+						</div>
+					)
+				}
 			</div>
 			<h2>Системные переменные</h2>
 			<div className={"list-key-value"}>
 				{
 					config.data.variable.map(item => (
-						<div className={"row"} key={"server-variable-" + item.id}>
+						<div className={"row"}
+							 key={"server-variable-" + [item.data.group, item.data.version, item.data.id].join('-')}>
 							<div className={"key"}>
 								{
 									item.data.text ? (
@@ -50,11 +55,12 @@ const Welcome = ({ store }) => {
 							<div className={"value value-var"}>
 								<div className={"input"}>
 									<Input type={"text"}
-										   value={store.vars.server[item.data.id] ? store.vars.server[item.data.id] : item.data.eval}
+										   value={store.vars.server[[item.data.group, item.data.version, item.data.id].join('@')] ?? item.data.eval}
 										   size={"large"} prefix={<LockOutlined/>} disabled={true}/>
 									{
-										store.vars.server[item.data.id] && (
-											<div class={"remove"} onClick={() => removeVarHandler(item.data.id)}>
+										store.vars.server[[item.data.group, item.data.version, item.data.id].join('@')] && (
+											<div className={"remove"}
+												 onClick={() => removeVarHandler([item.data.group, item.data.version, item.data.id].join('@'))}>
 												<DeleteOutlined/>
 											</div>
 										)
@@ -64,7 +70,7 @@ const Welcome = ({ store }) => {
 									<div className={"item"}>
 										<span className={"icon"}><ArrowRightOutlined/></span>
 										<span className={"text"}><Link
-											to={"/" + item.from.controller + '/' + item.from.action}>{item.from.url}</Link></span>
+											to={"/" + [item.data.group, item.data.version, item.from.controller, item.from.action].join('/')}>{item.from.url}</Link></span>
 									</div>
 								</div>
 							</div>

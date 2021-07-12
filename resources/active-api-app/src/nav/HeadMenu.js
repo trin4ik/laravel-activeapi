@@ -27,7 +27,9 @@ const HeadMenu = ({ store }) => {
 				{
 					config.versionList(store.app.apiGroup).map((item, key) => (
 						<Menu.Item key={key}>
-							<a onClick={() => store.app.setApiVersion(item)}>{item}</a>
+							<a onClick={() => {
+								store.app.setApiVersion(item)
+							}}>{item}</a>
 						</Menu.Item>
 					))
 				}

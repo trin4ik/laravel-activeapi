@@ -1,4 +1,4 @@
-import {action, makeObservable, observable, runInAction} from "mobx";
+import {action, makeObservable, observable, runInAction} from "mobx"
 
 class VarsStore {
 

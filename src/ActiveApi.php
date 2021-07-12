@@ -64,7 +64,9 @@ class ActiveApi
 			"api" => []
 		];
 
-		foreach (array_unique(\Arr::pluck($this->items, 'group')) as $group) {
+
+		$groups = array_unique(\Arr::pluck($this->items, 'group'));
+		foreach ($groups as $group) {
 			$group_version = \Arr::where($this->items, function ($value) use ($group) {
 				return $value->group === $group;
 			});
@@ -73,13 +75,18 @@ class ActiveApi
 					'title' => config('activeapi.group.info.' . $group . '.title') ?: $group
 				]];
 			}
-			foreach (array_unique(\Arr::pluck($group_version, 'version')) as $version) {
+
+			$versions = array_unique(\Arr::pluck($group_version, 'version'));
+
+			foreach ($versions as $version) {
 				if (!isset($result['api'][$group]['data'][$version])) {
 					$result['api'][$group]['data'][$version] = ['data' => [], 'info' => [
 						'title' => config('activeapi.version.info.' . $version . '.title') ?: $version
 					]];
 				}
 				foreach ($this->items as $item) {
+					if ($item->group !== $group || $item->version !== $version) continue;
+
 					$controller = false;
 
 					foreach ($result['api'][$group]['data'][$version]['data'] as $k => $v) {
