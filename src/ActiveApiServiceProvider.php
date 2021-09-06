@@ -25,27 +25,8 @@ class ActiveApiServiceProvider extends ServiceProvider
 			$this->publishes([
 				__DIR__ . '/../config/config.php' => config_path('activeapi.php'),
 			], 'config');
-
-			// Publishing the views.
-			/*$this->publishes([
-				__DIR__.'/../resources/views' => resource_path('views/vendor/activeapi'),
-			], 'views');*/
-
-			// Publishing assets.
-			/*$this->publishes([
-				__DIR__.'/../resources/assets' => public_path('vendor/activeapi'),
-			], 'assets');*/
-
-			// Publishing the translation files.
-			/*$this->publishes([
-				__DIR__.'/../resources/lang' => resource_path('lang/vendor/activeapi'),
-			], 'lang');*/
-
-			// Registering package commands.
-			// $this->commands([]);
 			$this->commands([
 				GenerateCommand::class,
-				BuildAppCommand::class,
 			]);
 		}
 	}
