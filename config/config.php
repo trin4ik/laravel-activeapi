@@ -9,7 +9,7 @@ return [
 		'enabled' => true,
 		'type' => 'bearer',
 		'description' => 'Authorization: Bearer',
-		'middleware' => 'auth:api'
+		'middleware' => ['auth:api']
 	],
 	'version' => [
 		'variable' => false,
@@ -21,5 +21,5 @@ return [
 		'Content-Type' => 'application/json',
 		'Accept' => 'application/json',
 	],
-	'middleware' => 'api',
+	'middleware' => ['api'],
 ];

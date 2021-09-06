@@ -18,8 +18,8 @@ class GenerateCommand extends Command
 
 		$activeapi = new ActiveApi(
 			array_merge(
-				explode(',', config('activeapi.middleware')),
-				explode(',', config('activeapi.auth.middleware'))
+				config('activeapi.middleware'),
+				config('activeapi.auth.middleware')
 			)
 		);
 

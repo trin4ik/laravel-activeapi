@@ -42,7 +42,7 @@ class ActiveApi
 	{
 		$headers = [];
 
-		foreach (explode('\r\n', config('activeapi.header')) as $v) {
+		foreach (config('activeapi.header') as $v) {
 			$tmp = explode(': ', $v);
 			$headers[$tmp[0]] = $tmp[1];
 		}

@@ -183,7 +183,7 @@ class ActiveApiItem
 	private function parseNeedAuth()
 	{
 		$this->setNeedAuth(false);
-		foreach (explode(',', config('activeapi.auth.middleware')) as $middleware) {
+		foreach (config('activeapi.auth.middleware') as $middleware) {
 			if (in_array($middleware, $this->route->getAction()['middleware'])) {
 				$this->setNeedAuth(true);
 				break;
