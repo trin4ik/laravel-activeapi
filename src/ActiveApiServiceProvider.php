@@ -43,9 +43,5 @@ class ActiveApiServiceProvider extends ServiceProvider
 		$this->app->singleton('activeapi', function () {
 			return new ActiveApi;
 		});
-
-		$this->publishes([
-			__DIR__ . '/../resources/active-api-app' => resource_path('active-api-app'),
-		]);
 	}
 }
