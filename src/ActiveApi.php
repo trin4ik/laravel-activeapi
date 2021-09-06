@@ -42,9 +42,8 @@ class ActiveApi
 	{
 		$headers = [];
 
-		foreach (config('activeapi.header') as $v) {
-			$tmp = explode(': ', $v);
-			$headers[$tmp[0]] = $tmp[1];
+		foreach (config('activeapi.header') as $k=>$v) {
+			$headers[$k] = $v;
 		}
 
 		$result = [
