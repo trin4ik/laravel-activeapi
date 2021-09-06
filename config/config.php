@@ -15,7 +15,7 @@ return [
 		'variable' => false,
 	],
 	'group' => [
-		'variable' => false,
+		'variable' => false
 	],
 	'header' => [
 		'Content-Type' => 'application/json',
