@@ -42,7 +42,7 @@ class ActiveApi
 	{
 		$headers = [];
 
-		foreach (config('activeapi.header') as $k=>$v) {
+		foreach (config('activeapi.header') as $k => $v) {
 			$headers[$k] = $v;
 		}
 
@@ -117,15 +117,39 @@ class ActiveApi
 						'field' => $item->fields,
 					];
 
-					usort($result['api'][$group]['data'][$version]['data'][$controller]['action'], function ($a, $b) {
-						return (isset($a['tags']['position']) ? (int)$a['tags']['position'] : 9999) > (isset($b['tags']['position']) ? (int)$b['tags']['position'] : 9999);
+					usort($result['api'][$group]['data'][$version]['data'][$controller]['action'], function ($one, $two) {
+						$a = 9999;
+						$b = 9999;
+						if (isset($one['tags']['position'])) {
+							$a = (int)$one['tags']['position'];
+						}
+						if (isset($two['tags']['position'])) {
+							$b = (int)$two['tags']['position'];
+						}
+
+						if ($a == $b) {
+							return 0;
+						}
+						return ($a < $b) ? -1 : 1;
 					});
 
 					$result['variable'] = array_merge($result['variable'], $item->variables);
 				}
 
-				usort($result['api'][$group]['data'][$version]['data'], function ($a, $b) {
-					return (isset($a['tags']['position']) ? (int)$a['tags']['position'] : 9999) > (isset($b['tags']['position']) ? (int)$b['tags']['position'] : 9999);
+				usort($result['api'][$group]['data'][$version]['data'], function ($one, $two) {
+					$a = 9999;
+					$b = 9999;
+					if (isset($one['tags']['position'])) {
+						$a = (int)$one['tags']['position'];
+					}
+					if (isset($two['tags']['position'])) {
+						$b = (int)$two['tags']['position'];
+					}
+
+					if ($a == $b) {
+						return 0;
+					}
+					return ($a < $b) ? -1 : 1;
 				});
 			}
 		}
