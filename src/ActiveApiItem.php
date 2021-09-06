@@ -40,7 +40,7 @@ class ActiveApiItem
 		$this->setUri($this->route->uri());
 	}
 
-	private final function setUri($data)
+	private function setUri($data)
 	{
 		$this->uri = $data;
 	}
@@ -152,12 +152,12 @@ class ActiveApiItem
 		$this->setAction($action);
 	}
 
-	private final function setAction($data)
+	private function setAction($data)
 	{
 		$this->action = $data;
 	}
 
-	private final function setController($data)
+	private function setController($data)
 	{
 		$this->controller = $data;
 	}
@@ -175,7 +175,7 @@ class ActiveApiItem
 		$this->setMethods($methods);
 	}
 
-	private final function setMethods($data)
+	private function setMethods($data)
 	{
 		$this->methods = $data;
 	}
@@ -191,7 +191,7 @@ class ActiveApiItem
 		}
 	}
 
-	private final function setNeedAuth($data)
+	private function setNeedAuth($data)
 	{
 		$this->needAuth = $data;
 	}
@@ -294,7 +294,7 @@ class ActiveApiItem
 		$this->setFields($fields);
 	}
 
-	private final function setFields($data)
+	private function setFields($data)
 	{
 		$this->fields = $data;
 	}
@@ -312,7 +312,7 @@ class ActiveApiItem
 		$this->setParams($params);
 	}
 
-	private final function setParams($data)
+	private function setParams($data)
 	{
 		$this->params = $data;
 	}
@@ -342,7 +342,7 @@ class ActiveApiItem
 		$this->setVariables($vars);
 	}
 
-	private final function setVariables($data)
+	private function setVariables($data)
 	{
 		$this->variables = $data;
 	}
