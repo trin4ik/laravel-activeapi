@@ -47,7 +47,7 @@ class GenerateCommand extends Command
 
 		$json = $activeapi->generateJson();
 
-		mkdir(public_path(config('activeapi.path')), 0777, true);
+		if (!file_exists(public_path(config('activeapi.path')))) mkdir(public_path(config('activeapi.path')), 0777, true);
 		file_put_contents(public_path(config('activeapi.path') . '/api.json'), $json);
 
 		$this->info('Done');
