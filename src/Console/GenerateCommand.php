@@ -11,8 +11,7 @@ class GenerateCommand extends Command
 
 	protected $description = 'Generate ActiveApi';
 
-	public function handle()
-	{
+	public function handle () {
 		$this->info('Starting generate');
 		$this->info('Routes list:');
 
@@ -27,6 +26,8 @@ class GenerateCommand extends Command
 		foreach ($activeapi->items as $item) {
 			$this->warn(
 				implode('', [
+					$item->group,
+					' ▶ ',
 					$item->controller['title'],
 					' ▶ ',
 					$item->action['title'],
