@@ -1,55 +1,54 @@
 {
-    "name": "trin4ik/activeapi",
-    "description": "generate api documentation from phpdoc",
-    "keywords": [
-        "trin4ik",
-        "activeapi"
-    ],
-    "homepage": "https://github.com/trin4ik/activeapi",
-    "license": "MIT",
-    "type": "library",
-    "authors": [
-        {
-            "name": "trin4ik",
-            "email": "trin4ik@gmail.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.4|^8.0",
-        "illuminate/support": "^8.0",
-        "phpdocumentor/reflection-docblock": "^5.2"
-    },
-    "require-dev": {
-        "orchestra/testbench": "^6.0",
-        "phpunit/phpunit": "^9.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Trin4ik\\ActiveApi\\": "src"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Trin4ik\\ActiveApi\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Trin4ik\\ActiveApi\\ActiveApiServiceProvider"
-            ],
-            "aliases": {
-                "ActiveApi": "Trin4ik\\ActiveApi\\ActiveApiFacade"
-            }
-        }
+  "name": "trin4ik/activeapi",
+  "description": "generate api documentation from phpdoc",
+  "keywords": [
+    "trin4ik",
+    "activeapi"
+  ],
+  "homepage": "https://github.com/trin4ik/activeapi",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "trin4ik",
+      "email": "trin4ik@gmail.com",
+      "role": "Developer"
     }
+  ],
+  "require": {
+    "php": "^7.4|^8.0",
+    "illuminate/support": ">=8.0",
+    "phpdocumentor/reflection-docblock": "^5.2"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.0",
+    "phpunit/phpunit": "^9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Trin4ik\\ActiveApi\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Trin4ik\\ActiveApi\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Trin4ik\\ActiveApi\\ActiveApiServiceProvider"
+      ],
+      "aliases": {
+        "ActiveApi": "Trin4ik\\ActiveApi\\ActiveApiFacade"
+      }
+    }
+  }
 }

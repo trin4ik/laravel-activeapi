@@ -22,8 +22,7 @@ class ActiveApiItem
 	public $group = 'main';
 	public $version = 'master';
 
-	public function __construct(Route $route)
-	{
+	public function __construct (Route $route) {
 		$this->route = $route;
 
 		$this->parseUri();
@@ -35,19 +34,16 @@ class ActiveApiItem
 		$this->parseVariables();
 	}
 
-	private function parseUri()
-	{
+	private function parseUri () {
 		$this->setUri($this->route->uri());
 	}
 
-	private function setUri($data)
-	{
+	private function setUri ($data) {
 		$this->uri = $data;
 	}
 
 
-	private function parseAction()
-	{
+	private function parseAction () {
 		$original = get_class($this->route->getController());
 		$title = last(explode('\\', $original));
 
@@ -152,18 +148,15 @@ class ActiveApiItem
 		$this->setAction($action);
 	}
 
-	private function setAction($data)
-	{
+	private function setAction ($data) {
 		$this->action = $data;
 	}
 
-	private function setController($data)
-	{
+	private function setController ($data) {
 		$this->controller = $data;
 	}
 
-	private function parseMethods()
-	{
+	private function parseMethods () {
 		$methods = $this->route->methods();
 		foreach ($methods as $k => $v) {
 			if ($v === "HEAD") {
@@ -175,13 +168,11 @@ class ActiveApiItem
 		$this->setMethods($methods);
 	}
 
-	private function setMethods($data)
-	{
+	private function setMethods ($data) {
 		$this->methods = $data;
 	}
 
-	private function parseNeedAuth()
-	{
+	private function parseNeedAuth () {
 		$this->setNeedAuth(false);
 		foreach (config('activeapi.auth.middleware') as $middleware) {
 			if (in_array($middleware, $this->route->getAction()['middleware'])) {
@@ -191,13 +182,11 @@ class ActiveApiItem
 		}
 	}
 
-	private function setNeedAuth($data)
-	{
+	private function setNeedAuth ($data) {
 		$this->needAuth = $data;
 	}
 
-	private function parseFields()
-	{
+	private function parseFields () {
 		$fields = [];
 
 		foreach ($this->route->signatureParameters() as $param) {
@@ -294,13 +283,11 @@ class ActiveApiItem
 		$this->setFields($fields);
 	}
 
-	private function setFields($data)
-	{
+	private function setFields ($data) {
 		$this->fields = $data;
 	}
 
-	private function parseParams()
-	{
+	private function parseParams () {
 		$params = [];
 
 		foreach ($this->route->signatureParameters() as $param) {
@@ -312,13 +299,11 @@ class ActiveApiItem
 		$this->setParams($params);
 	}
 
-	private function setParams($data)
-	{
+	private function setParams ($data) {
 		$this->params = $data;
 	}
 
-	private function parseVariables()
-	{
+	private function parseVariables () {
 		$vars = [];
 
 		if (!empty($this->action['tags']['var'])) {
@@ -342,8 +327,21 @@ class ActiveApiItem
 		$this->setVariables($vars);
 	}
 
-	private function setVariables($data)
-	{
+	private function setVariables ($data) {
 		$this->variables = $data;
+	}
+
+	public function toArray () {
+		return [
+			'id' => $this->action['slug'],
+			'name' => $this->action['title'],
+			'text' => $this->action['description'],
+			'tags' => $this->action['tags'],
+			'auth' => $this->needAuth,
+			'url' => $this->uri,
+			'method' => $this->methods[0],
+			'param' => $this->params,
+			'field' => $this->fields,
+		];
 	}
 }

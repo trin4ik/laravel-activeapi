@@ -11,14 +11,12 @@ class ActiveApi
 	public $routes = [];
 	public $items = [];
 
-	public function __construct($middlewares = [])
-	{
+	public function __construct ($middlewares = []) {
 		$this->parseRoutes($middlewares);
 		$this->fetchItems();
 	}
 
-	private function parseRoutes($middlewares = [])
-	{
+	private function parseRoutes ($middlewares = []) {
 		$routes = Route::getRoutes();
 
 		foreach ($routes as $route) {
@@ -31,15 +29,13 @@ class ActiveApi
 		}
 	}
 
-	private function fetchItems()
-	{
+	private function fetchItems () {
 		foreach ($this->routes as $route) {
 			$this->items[] = new ActiveApiItem($route);
 		}
 	}
 
-	public function generateJson()
-	{
+	public function generateJson () {
 		$headers = [];
 
 		foreach (config('activeapi.header') as $k => $v) {
@@ -105,17 +101,7 @@ class ActiveApi
 						$controller = count($result['api'][$group]['data'][$version]['data']) - 1;
 					}
 
-					$result['api'][$group]['data'][$version]['data'][$controller]['action'][] = [
-						'id' => $item->action['slug'],
-						'name' => $item->action['title'],
-						'text' => $item->action['description'],
-						'tags' => $item->action['tags'],
-						'auth' => $item->needAuth,
-						'url' => $item->uri,
-						'method' => $item->methods[0],
-						'param' => $item->params,
-						'field' => $item->fields,
-					];
+					$result['api'][$group]['data'][$version]['data'][$controller]['action'][] = $item->toArray();
 
 					usort($result['api'][$group]['data'][$version]['data'][$controller]['action'], function ($one, $two) {
 						$a = 9999;

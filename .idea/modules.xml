@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ActiveApi.iml" filepath="$PROJECT_DIR$/.idea/ActiveApi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../activeapi-diefly/.idea/activeapi-diefly.iml" filepath="$PROJECT_DIR$/../activeapi-diefly/.idea/activeapi-diefly.iml" />
     </modules>
   </component>
 </project>
